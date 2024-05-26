@@ -1,3 +1,28 @@
 {
-  "extends": "next/core-web-vitals"
+  "extends": ["next/core-web-vitals", "airbnb", "airbnb-typescript"],
+  "parserOptions": {
+    "project": "./tsconfig.json"
+  },
+  "rules": {
+    "react/jsx-props-no-spreading": 0,
+    "react/require-default-props": 0,
+    "@typescript-eslint/no-unused-vars": 1,
+    "import/no-extraneous-dependencies": 0,
+    "no-param-reassign": "off",
+    "linebreak-style": "off"
+  },
+  "env": {
+    "browser": true,
+    "es2021": true
+  },
+  "ignorePatterns": [
+    "dist",
+    "build",
+    "next.config.js",
+    "node_modules",
+    "postcss.config.cjs",
+    "next.config.mjs",
+    "tailwind.config.js",
+    "postcss.config.js"
+  ]
 }
