@@ -9,6 +9,8 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@hookform/resolvers": "^3.4.2",
+    "@radix-ui/react-label": "^2.0.2",
     "@radix-ui/react-popover": "^1.0.7",
     "@radix-ui/react-slot": "^1.0.2",
     "@types/node": "20.12.12",
@@ -24,11 +26,13 @@
     "postcss": "8.4.38",
     "react": "18.3.1",
     "react-dom": "18.3.1",
+    "react-hook-form": "^7.51.5",
     "shadcn-ui": "^0.8.0",
     "tailwind-merge": "^2.3.0",
     "tailwindcss": "3.4.3",
     "tailwindcss-animate": "^1.0.7",
-    "typescript": "5.4.5"
+    "typescript": "5.4.5",
+    "zod": "^3.23.8"
   },
   "devDependencies": {
     "eslint": "8.57.0",
