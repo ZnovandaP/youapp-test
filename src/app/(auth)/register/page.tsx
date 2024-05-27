@@ -1,19 +1,14 @@
 import * as React from 'react';
-import { Button } from '@/components/ui/button';
+import { Metadata } from 'next';
+import Register from '@/modules/auth/register';
 
-export default function Register() {
+export const metadata: Metadata = {
+  title: 'Register | Youapp Test',
+  description: 'Register Page | Youapp Test',
+};
+
+export default function RegisterPage() {
   return (
-    <section className="">
-      <h1 className="text-3xl font-bold">
-        Hello World Register Page
-      </h1>
-
-      <Button type="button" variant="default">
-        Click me
-      </Button>
-      <Button type="button" variant="default">
-        Hallo
-      </Button>
-    </section>
+    <Register />
   );
 }

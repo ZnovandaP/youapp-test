@@ -1,19 +1,14 @@
 import * as React from 'react';
-import { Button } from '@/components/ui/button';
+import Login from '@/modules/auth/login';
+import { Metadata } from 'next';
 
-export default function Login() {
+export const metadata: Metadata = {
+  title: 'Login | Youapp Test',
+  description: 'Login Page | Youapp Test',
+};
+
+export default function LoginPage() {
   return (
-    <section className="">
-      <h1 className="text-3xl font-bold">
-        Hello World Login Page
-      </h1>
-
-      <Button type="button" variant="default">
-        Click me
-      </Button>
-      <Button type="button" variant="default">
-        Hallo
-      </Button>
-    </section>
+    <Login />
   );
 }
