@@ -1,4 +1,5 @@
 import NavMenuContextProvider from '@/lib/context/NavMenu';
+import { SessionProvider } from 'next-auth/react';
 import * as React from 'react';
 
 type ProvidersProps = {
@@ -7,8 +8,10 @@ type ProvidersProps = {
 
 export default function Providers({ children }: ProvidersProps) {
   return (
-    <NavMenuContextProvider>
-      {children}
-    </NavMenuContextProvider>
+    <SessionProvider>
+      <NavMenuContextProvider>
+        {children}
+      </NavMenuContextProvider>
+    </SessionProvider>
   );
 }
