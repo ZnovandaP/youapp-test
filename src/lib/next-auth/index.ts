@@ -31,14 +31,13 @@ const authOption: NextAuthOptions = {
       },
       async authorize(credentials) {
         const body = credentials as AuthParams;
-
         try {
           const response = await login(body);
           if (response) {
             if (response.access_token) {
               return {
-                email: credentials?.email,
-                username: credentials?.username,
+                email: body?.email,
+                username: body?.username,
                 accessToken: response.access_token,
               } as User;
             }
@@ -57,7 +56,7 @@ const authOption: NextAuthOptions = {
       if (account?.provider === 'credentials') {
         token.accessToken = user.accessToken;
         token.email = user.email;
-        token.username = user.name;
+        token.username = user.username;
       }
       return token;
     },
