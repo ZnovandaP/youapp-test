@@ -1,3 +1,4 @@
+/* eslint-disable import/prefer-default-export */
 import axios, { AxiosError, AxiosRequestConfig } from 'axios';
 import { getSession } from 'next-auth/react';
 
@@ -9,16 +10,15 @@ type FetchWithAuthParams = {
   options?: AxiosRequestConfig
 };
 
-export const fetchWithAuth = async ({ endpoint, options, method }: FetchWithAuthParams) => {
+/* export const fetchWithAuth = async ({ endpoint, options, method }: FetchWithAuthParams) => {
   try {
     const session = await getSession();
-    const getAccessTokenFromSession = session?.user?.accessToken!;
+    const getAccessTokenFromSession = session?.user!;
     const { data } = await axios.request({
       ...options,
       method,
       url: `${baseUrl}/${endpoint}`,
       headers: {
-        'x-access-token': getAccessTokenFromSession,
       },
     });
     return data;
@@ -30,3 +30,4 @@ export const fetchWithAuth = async ({ endpoint, options, method }: FetchWithAuth
     throw new Error(error.message);
   }
 };
+ */

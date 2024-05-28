@@ -20,12 +20,12 @@ export type RegisterResponse = {
 const login = async (body: AuthParams): Promise<LoginResponse> => {
   try {
     const { data } = await axios.post(`${baseUrl}/api/login`, body, {
-      headers: {
-        'Content-Type': 'application/json',
-        'Access-Control-Allow-Origin': 'htttp://localhost:3000',
-        'Access-Control-Allow-Credentials': 'true',
-        'Access-Control-Allow-Methods': 'GET,PUT,POST,DELETE,PATCH,OPTIONS',
-      },
+      // headers: {
+      //   'Content-Type': 'application/json',
+      //   'Access-Control-Allow-Origin': 'htttp://localhost:3000',
+      //   'Access-Control-Allow-Credentials': 'true',
+      //   'Access-Control-Allow-Methods': 'GET,PUT,POST,DELETE,PATCH,OPTIONS',
+      // },
     });
     console.log(data);
 
