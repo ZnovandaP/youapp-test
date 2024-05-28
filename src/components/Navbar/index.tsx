@@ -4,6 +4,7 @@ import * as React from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 import { cn } from '@/lib/utils';
+import { usePathname } from 'next/navigation';
 import Container from '../Container';
 import NavMenuMobile from './ComponentSupport/NavMenuMobile';
 import NavMenu from './ComponentSupport/NavMenu';
@@ -12,6 +13,13 @@ const scrollYPositionActive = 40;
 
 export default function Navbar() {
   const [navBgIsActive, setNavBgIsActive] = React.useState(false);
+  const pathname = usePathname();
+
+  const hideNavbar = () => {
+    const path = ['/login', '/register'];
+
+    return path.includes(pathname);
+  };
 
   const changeStyleNavbarScroll = () => {
     if (window.scrollY > scrollYPositionActive) {
@@ -29,7 +37,7 @@ export default function Navbar() {
     };
   }, []);
 
-  return (
+  return !hideNavbar() ? (
     <nav className={cn(
       'sticky top-0 z-50 py-4 transition-all duration-300',
       navBgIsActive && 'bg-white/10 backdrop-blur-md border-b border-teal-500',
@@ -51,5 +59,6 @@ export default function Navbar() {
         <NavMenu className="hidden md:flex" />
       </Container>
     </nav>
-  );
+  )
+    : null;
 }
