@@ -6,6 +6,7 @@ import Main from './Main';
 import Navbar from '../Navbar';
 import Footer from './Footer';
 import Providers from '../Providers';
+import { Toaster } from '../ui/toaster';
 
 type AppShellProps = {
   children: React.ReactNode
@@ -22,6 +23,8 @@ export default function AppShell({ children }: AppShellProps) {
       <Main>
         {children}
       </Main>
+
+      <Toaster />
 
       <Footer />
     </Providers>
