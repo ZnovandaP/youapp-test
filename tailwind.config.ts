@@ -33,6 +33,7 @@ const config = {
         main: '#09141a',
         second: '#0d1d23',
         third: '#1f4247',
+        destructive: '#991b1b',
       },
       fontFamily: {
         inter: ['var(--font-inter)'],
