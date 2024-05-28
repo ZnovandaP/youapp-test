@@ -1,4 +1,4 @@
-import { NextAuthOptions } from 'next-auth';
+/* import { NextAuthOptions } from 'next-auth';
 import CredentialsProvider from 'next-auth/providers/credentials';
 
 const authOption: NextAuthOptions = {
@@ -28,11 +28,11 @@ const authOption: NextAuthOptions = {
           type: 'password',
         },
       },
-      authorize: async (credentials) => {
+      // authorize: async (credentials) => {
 
-      },
+      // },
     }),
   ],
 };
 
-export default authOption;
+export default authOption; */
