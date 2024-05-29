@@ -30,7 +30,18 @@ export default function NavMenu({ className = '' }: NavMenuProps) {
           </AvatarFallback>
         </Avatar>
       </PopoverTrigger>
-      <PopoverContent className="mr-4 mt-3">
+      <PopoverContent className="mr-4 mt-3 flex flex-col gap-4">
+        <Button
+          variant="fancy"
+          className="w-full"
+          size="md"
+          asChild
+        >
+          <Link href={`/profile/${data?.user?.username}`}>
+            Profile
+          </Link>
+        </Button>
+
         <Button
           className="w-full"
           type="button"
