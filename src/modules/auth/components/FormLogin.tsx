@@ -1,16 +1,18 @@
 'use client';
 
 import * as React from 'react';
-import { Button } from '@/components/ui/button';
-import {
-  FormField, FormItem, FormControl, FormMessage,
-  Form,
-} from '@/components/ui/form';
+import { z } from 'zod';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
-import { z } from 'zod';
+import { signIn } from 'next-auth/react';
+import { useRouter, useSearchParams } from 'next/navigation';
+import { Button } from '@/components/ui/button';
+import {
+  FormField, FormItem, FormControl, FormMessage, Form,
+} from '@/components/ui/form';
 import { Input } from '@/components/ui/input';
-import { login, register } from '@/service/auth';
+import { ImSpinner9 } from 'react-icons/im';
+import { useToast } from '@/components/ui/use-toast';
 import ReminderAuth from './ReminderAuth';
 
 const authSchema = z.object({
@@ -33,6 +35,13 @@ export default function FormLogin() {
     },
   });
 
+  const router = useRouter();
+  const searchParams = useSearchParams();
+
+  const { toast } = useToast();
+
+  const callbackUrl = searchParams.get('callbackUrl') || '/';
+
   const fieldIsError = Object.values(form.formState.errors).length > 0;
 
   async function onSubmit(values: LoginValueType) {
@@ -48,14 +57,34 @@ export default function FormLogin() {
     }
 
     try {
-      const data = await login(body);
+      const res = await signIn('credentials', {
+        ...body,
+        redirect: false,
+        callbackUrl,
+      });
 
-      console.log(data);
+      if (res?.ok) {
+        toast({
+          title: 'Login is success',
+          description: `Welcome back!! ${body.username || body.email}`,
+        });
+        router.push(`/profile/${body.username || body.email}`);
+      }
+
+      if (res?.status === 401) {
+        toast({
+          variant: 'destructive',
+          title: 'Login is failed!',
+          description: 'Please check the field and try again.',
+        });
+      }
     } catch (error: any) {
-      console.log(error.message);
+      toast({
+        variant: 'destructive',
+        title: 'Error: Login is failed!',
+        description: `Message: ${error.message}`,
+      });
     }
-
-    console.table(body);
   }
 
   return (
@@ -104,7 +133,9 @@ export default function FormLogin() {
             className="w-full"
             disabled={form.formState.isSubmitting || fieldIsError}
           >
-            Login
+            {form.formState.isSubmitting ? (
+              <ImSpinner9 className="animate-spin text-2xl text-white" />
+            ) : 'Login'}
           </Button>
         </form>
       </Form>
