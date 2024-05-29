@@ -1,27 +1,28 @@
-/* eslint-disable import/prefer-default-export */
 import axios, { AxiosError, AxiosRequestConfig } from 'axios';
 import { getSession } from 'next-auth/react';
 
 export const baseUrl = process.env.NEXT_PUBLIC_BASE_URL_API_YOUAPP as string;
 
 type FetchWithAuthParams = {
-  method: 'get' | 'post' | 'put' | 'patch' | 'delete'
+  method: 'GET' | 'POST' | 'PUT' | 'PATCH' | 'DELETE'
   endpoint: string;
   options?: AxiosRequestConfig
 };
 
-/* export const fetchWithAuth = async ({ endpoint, options, method }: FetchWithAuthParams) => {
+export const fetchWithToken = async ({ endpoint, options, method }: FetchWithAuthParams) => {
   try {
     const session = await getSession();
-    const getAccessTokenFromSession = session?.user!;
-    const { data } = await axios.request({
+    const getAccessTokenFromSession = session?.user?.accessToken || '';
+
+    const res = await axios.request({
       ...options,
       method,
-      url: `${baseUrl}/${endpoint}`,
+      url: `${baseUrl}/api${endpoint}`,
       headers: {
+        'x-access-token': getAccessTokenFromSession,
       },
     });
-    return data;
+    return res;
   } catch (error: any) {
     if (error instanceof AxiosError) {
       throw new Error(error.response?.data.message);
@@ -30,4 +31,3 @@ type FetchWithAuthParams = {
     throw new Error(error.message);
   }
 };
- */
