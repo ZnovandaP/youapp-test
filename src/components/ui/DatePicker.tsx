@@ -21,7 +21,7 @@ import {
 
 export function DatePicker({ field }: { field: any }) {
   return (
-    <FormItem className="flex flex-col">
+    <FormItem className="flex flex-col w-full">
       <Popover>
         <PopoverTrigger asChild>
           <FormControl>
