@@ -68,7 +68,7 @@ export default function FormLogin() {
           title: 'Login is success',
           description: `Welcome back!! ${body.username || body.email}`,
         });
-        router.push(`/profile/${body.username || body.email}`);
+        router.push('/profile/me');
       }
 
       if (res?.status === 401) {
