@@ -12,10 +12,11 @@ import { Button } from '../ui/button';
 import { useToast } from '../ui/use-toast';
 
 type InterestInputProps = {
-  field: any
+  field?: any
 };
 
 export default function InterestInput({ field }: InterestInputProps) {
+  const [input, setInput] = React.useState('');
   const { toast } = useToast();
   const { data, dispatch } = useInterests();
 
@@ -39,9 +40,10 @@ export default function InterestInput({ field }: InterestInputProps) {
   }, []);
 
   const handleAdd = (inputField: any) => {
-    if (inputField.value) {
-      dispatch({ type: 'add', payload: inputField.value });
-      inputField.onChange('');
+    if (inputField?.value || input.length > 0) {
+      dispatch({ type: 'add', payload: inputField?.value || input });
+      inputField?.onChange('');
+      setInput('');
     } else {
       toast({
         title: 'Fill Interest field!!',
@@ -57,8 +59,10 @@ export default function InterestInput({ field }: InterestInputProps) {
           type="text"
           autoComplete="name"
           placeholder="Enter your interest"
-          {...field}
           className="rounded-tr-sm rounded-br-sm"
+          value={input}
+          onChange={(e) => setInput(e.target.value)}
+          {...field}
         />
         <Button
           type="button"
