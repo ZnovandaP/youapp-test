@@ -70,7 +70,7 @@ export default function FormCreateProfile() {
         description: `${res.message}, Welcome to Youapp ${res.data.name}!!`,
       });
 
-      push(`/profile/${res.data.name}`);
+      push('/profile/me');
     } catch (error: any) {
       toast({
         variant: 'destructive',
