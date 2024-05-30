@@ -34,11 +34,11 @@ const getProfile = async (): Promise<ResponseGetProfile> => {
 };
 
 export type SetProfileParams = {
-  name: string
-  birthday: string
-  height: number
-  weight: number
-  interests: string[]
+  name?: string
+  birthday?: string
+  height?: number
+  weight?: number
+  interests?: string[]
 };
 
 export type ResponseSetProfile = {
