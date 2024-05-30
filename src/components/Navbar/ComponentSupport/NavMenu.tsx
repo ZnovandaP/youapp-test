@@ -37,7 +37,7 @@ export default function NavMenu({ className = '' }: NavMenuProps) {
           size="md"
           asChild
         >
-          <Link href={`/profile/${data?.user?.username}`}>
+          <Link href="/profile/me">
             Profile
           </Link>
         </Button>
